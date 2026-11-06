@@ -20,5 +20,29 @@
 
         <button type="button">Submit</button>
         </form>
+
+        
+<script>
+document.getElementById("form").onsubmit = function(e) {
+    e.preventDefault();
+
+    var data = new FormData();
+    data.append("name", document.getElementById("name").value);
+    data.append("email", document.getElementById("email").value);
+    data.append("course", document.getElementById("course").value);
+
+    fetch("https://script.google.com/macros/s/AKfycby1MDrYSQQDefaMVUZQI-7f55znO7EgYvEImRbfzj8yIgTvtiMYfyjw91n5RLdBZWFR/exec", {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(result => {
+        alert("Student Registered!");
+        document.getElementById("form").reset();
+    })
+    .catch(error => alert("Error!"));
+};
+</script>
+
     </body>
 </html>
