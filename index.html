@@ -1,48 +1,57 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Form</title>
-    </head>
-    <body>
-        <h1>My Registraution Form</Form></h1>
-        <form></form>
-        <label>Student Name</label>
-        <input type="name" placeholder="Enter Name">
+<head>
+    <title>My Form</title>
+</head>
+<body>
+
+    <h1>My Registration Form</h1>
+
+    <form id="form">
+
+        Student Name:
+        <input type="text" id="name" placeholder="Enter Name" required>
         <br><br>
 
-        <label>Student Email</label>
-        <input type="email" placeholder="Enter Email">
+        Student Email:
+        <input type="email" id="email" placeholder="Enter Email" required>
         <br><br>
 
-        <label>Student course</label>
-        <input type="name" placeholder="Enter course">
+        Student Course:
+        <input type="text" id="course" placeholder="Enter Course" required>
         <br><br>
 
-        <button type="button">Submit</button>
-        </form>
+        <button type="submit">Submit</button>
 
-        
-<script>
-document.getElementById("form").onsubmit = function(e) {
-    e.preventDefault();
+    </form>
 
-    var data = new FormData();
-    data.append("name", document.getElementById("name").value);
-    data.append("email", document.getElementById("email").value);
-    data.append("course", document.getElementById("course").value);
+    <script>
+    document.getElementById("form").onsubmit = function(e) {
 
-    fetch("https://script.google.com/macros/s/AKfycby1MDrYSQQDefaMVUZQI-7f55znO7EgYvEImRbfzj8yIgTvtiMYfyjw91n5RLdBZWFR/exec", {
-        method: "POST",
-        body: data
-    })
-    .then(response => response.text())
-    .then(result => {
-        alert("Student Registered!");
-        document.getElementById("form").reset();
-    })
-    .catch(error => alert("Error!"));
-};
-</script>
+        e.preventDefault();
 
-    </body>
+        var data = new FormData();
+
+        data.append("name", document.getElementById("name").value);
+        data.append("email", document.getElementById("email").value);
+        data.append("course", document.getElementById("course").value);
+
+        fetch("https://script.google.com/macros/s/AKfycby1MDrYSQQDefaMVUZQI-7f55znO7EgYvEImRbfzj8yIgTvtiMYfyjw91n5RLdBZWFR/exec", {
+            method: "POST",
+            body: data
+        })
+        .then(response => response.text())
+        .then(result => {
+            alert("Student Registered!");
+            document.getElementById("form").reset();
+        })
+        .catch(error => {
+            alert("Something went wrong!");
+        });
+
+    };
+    </script>
+
+</body>
 </html>
